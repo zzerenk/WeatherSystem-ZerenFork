@@ -1,0 +1,3 @@
+/Users/ahsenaltas/CLionProjects/WeatherSystem/cmake-build-debug/CMakeFiles/WeatherSystem.dir
+/Users/ahsenaltas/CLionProjects/WeatherSystem/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ahsenaltas/CLionProjects/WeatherSystem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
