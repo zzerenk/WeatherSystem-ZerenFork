@@ -23,8 +23,8 @@ char hava_durumlari[21][40] = {"Acik", "Az Bulutlu", "Parcali Bulutlu", "Cok Bul
 void veri_girisi();
 bool isValid(char tarih[12]);
 void veri_goruntule();
-void analiz(int gunSayisi);
-void sıralama(int gunSayisi);
+void analiz();
+void siralama();
 void menu();
 
 int main(){
@@ -32,6 +32,7 @@ int main(){
 }
 
 void menu(){
+    int secim;
     printf("-------------------------------------------------------------");
     printf("\n-----------------------MENU----------------------------------");
     printf("\n(1) Veri Girisi"
@@ -39,6 +40,21 @@ void menu(){
            "\n(3) Belirli Deger Araliklarindaki Verileri Goruntuleme"
            "\n(4) Verilerin Siralanmasi");
     printf("\nLutfen yapmak istediginiz islemi secin:");
+    scanf("%d", &secim);
+    while(scanf("%d", &secim) !=1 || !(0<secim && secim<5)){
+        printf("Lutfen gecerli bir secenek giriniz: ");
+        scanf("%d", &secim);
+
+        while(getchar()!='\n'); //Hatalı girişi temizle
+
+    }
+    switch(secim){
+        case 1: veri_girisi(); break;
+        case 2: veri_goruntule(); break;
+        case 3: analiz(); break;
+        case 4: siralama(); break;
+        default: menu();
+    }
 }
 
 bool isValid(char tarih[12]){
@@ -137,23 +153,23 @@ void veri_girisi() {
 
 void veri_goruntule() {
     int gunsayisi;
-    printf("Görüntülemek istediğiniz gün sayısını girin: ");
+    printf("Goruntulemek istediginiz gun sayisini girin: ");
     scanf("%d", &gunsayisi);
 
     for (int i = 0; i < gunsayisi; i++) {
         char dateInput[12];
 
-        printf("Görüntülemek istediğiniz %d.günün tarihini girin: ", i + 1);
+        printf("Goruntulemek istediginiz %d.gunun tarihini girin: ", i + 1);
         scanf("%s", dateInput);
 
         while (!isValid(dateInput)) {
-            printf("Girilen tarih geçersiz. Tekrar girin: ");
+            printf("Girilen tarih gecersiz. Tekrar girin: ");
             scanf("%s", dateInput);
         }
 
         FILE *file = fopen("../WeatherSystem/veriler", "r");
         if (file == NULL) {
-            printf("Dosya açma hatası\n");
+            printf("Dosya acma hatasi\n");
             return;
         }
 
@@ -182,3 +198,8 @@ void veri_goruntule() {
         fclose(file);
     }
 }
+
+void analiz(){}
+void siralama(){}
+
+
