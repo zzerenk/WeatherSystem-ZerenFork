@@ -34,9 +34,9 @@ int main(){
 void menu(){
     printf("-------------------------------------------------------------");
     printf("\n-----------------------MENU----------------------------------");
-    printf("\n(1) Veri Goruntuleme"
+    printf("\n(1) Veri Girisi"
            "\n(2) Girilen Verileri Goruntuleme"
-           "\n(3) Girilen Araliktaki Verileri Goruntuleme"
+           "\n(3) Belirli Deger Araliklarindaki Verileri Goruntuleme"
            "\n(4) Verilerin Siralanmasi");
     printf("\nLutfen yapmak istediginiz islemi secin:");
 }
