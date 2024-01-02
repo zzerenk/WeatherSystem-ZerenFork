@@ -23,15 +23,18 @@ char hava_durumlari[21][40] = {"Acik", "Az Bulutlu", "Parcali Bulutlu", "Cok Bul
 void veri_girisi();
 bool isValid(char tarih[12]);
 void veri_goruntule();
-void analiz(int gunSayisi);
-void sıralama(int gunSayisi);
+void analiz();
+void siralama();
 void menu();
+void tarih_araligi(char tarih[12], int gun_sayisi, char list[gun_sayisi][12]);
 
 int main(){
     menu();
+
 }
 
 void menu(){
+    int secim;
     printf("-------------------------------------------------------------");
     printf("\n-----------------------MENU----------------------------------");
     printf("\n(1) Veri Girisi"
@@ -39,6 +42,19 @@ void menu(){
            "\n(3) Belirli Deger Araliklarindaki Verileri Goruntuleme"
            "\n(4) Verilerin Siralanmasi");
     printf("\nLutfen yapmak istediginiz islemi secin:");
+    while(scanf("%d", &secim) !=1 || !(0<secim && secim<5)){
+        printf("Lutfen gecerli bir secenek giriniz: ");
+
+        while(getchar()!='\n'); //Hatalı girişi temizle
+
+    }
+    switch(secim){
+        case 1: veri_girisi(); break;
+        case 2: veri_goruntule(); break;
+        case 3: analiz(); break;
+        case 4: siralama(); break;
+        default: menu();
+    }
 }
 
 bool isValid(char tarih[12]){
@@ -70,6 +86,33 @@ bool isValid(char tarih[12]){
     return false;
 }
 
+void tarih_araligi(char tarih[12], int gun_sayisi, char list[gun_sayisi][12]) {
+    int gun, ay, yil;
+    char gecici_tarih[12];
+    strcpy(gecici_tarih,tarih);
+    sscanf(gecici_tarih, "%d.%d.%d", &gun, &ay, &yil);
+
+    for (int i = 0; i < gun_sayisi; i++) {
+        sprintf(gecici_tarih, "%d.%d.%d", gun + 1, ay, yil);
+
+        if (isValid(gecici_tarih) == false) {
+            gun = 1;
+            ay += 1;
+
+            if (isValid(gecici_tarih) == false) {
+                ay = 1;
+                yil += 1;
+            }
+        }else{
+            gun += 1;
+        }
+        // tarih dizisini list dizisine kopyala
+        for (int j = 0; j < 12; j++) {
+            list[i][j] = gecici_tarih[j];
+        }
+    }
+}
+
 void veri_girisi() {
     int gunSayisi;
     printf("Lutfen meteorolojik kayit girmek istediginiz gun sayisini giriniz:");
@@ -89,10 +132,7 @@ void veri_girisi() {
         printf("\n -- Hava Durumu --");
         printf("\n Lutfen secmek istediginiz hava durumunun sayisal degerini giriniz: \n" );
         for(int j=0; j<21; j++){
-            for(int k=0; k<40; k++){
-                if(hava_durumlari[j][k] != NULL)
-                    printf("%c",hava_durumlari[j][k]);
-            }
+            printf("%s", hava_durumlari[j]);
             printf(" (%d) \n", j+1);
         }
 
@@ -137,23 +177,23 @@ void veri_girisi() {
 
 void veri_goruntule() {
     int gunsayisi;
-    printf("Görüntülemek istediğiniz gün sayısını girin: ");
+    printf("Goruntulemek istediginiz gun sayisini girin: ");
     scanf("%d", &gunsayisi);
 
     for (int i = 0; i < gunsayisi; i++) {
         char dateInput[12];
 
-        printf("Görüntülemek istediğiniz %d.günün tarihini girin: ", i + 1);
+        printf("Goruntulemek istediginiz %d.gunun tarihini girin: ", i + 1);
         scanf("%s", dateInput);
 
         while (!isValid(dateInput)) {
-            printf("Girilen tarih geçersiz. Tekrar girin: ");
+            printf("Girilen tarih gecersiz. Tekrar girin: ");
             scanf("%s", dateInput);
         }
 
         FILE *file = fopen("../WeatherSystem/veriler", "r");
         if (file == NULL) {
-            printf("Dosya açma hatası\n");
+            printf("Dosya acma hatasi\n");
             return;
         }
 
@@ -182,3 +222,8 @@ void veri_goruntule() {
         fclose(file);
     }
 }
+
+void analiz(){}
+void siralama(){}
+
+
