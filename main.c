@@ -77,5 +77,14 @@ void veri_girisi(int gunSayisi) {
         printf("\n UV Indeksi: ", veri[i].UV_indeksi);
         scanf("%d", &veri[i].UV_indeksi);
 
+        //Verileri dosyaya yazdırma
+        FILE *file;
+        file = fopen("../veriler","a");
+        fprintf(file, "{Tarih: %s\nHava Durumu: %d\nSicaklik Degeri: %.2f\nNem Yuzdesi: %d\n"
+                      "Basinc Degeri: %.2f\nRuzgar Hizi: %.2f\nGorus Mesafesi: %.2f\nUV Indeksi: %d}\n",
+                veri[i].tarih,veri[i].hava_durumu,veri[i].sicaklik,veri[i].nem_yuzdesi,veri[i].basinc,
+                veri[i].ruzgar, veri[i].gorus_mesafesi, veri[i].UV_indeksi);
+        fclose(file);
+
     }
 }
