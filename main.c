@@ -29,14 +29,7 @@ void menu();
 void tarih_araligi(char tarih[12], int gun_sayisi, char list[gun_sayisi][12]);
 
 int main(){
-    char tarihler[5][12];
-
-    tarih_araligi("30.12.2012", 5, tarihler);
-
-    // Elde edilen tarihleri yazdır
-    for (int i = 0; i < 5; i++) {
-        printf("%s\n", tarihler[i]);
-    }
+    menu();
 
 }
 
@@ -49,10 +42,8 @@ void menu(){
            "\n(3) Belirli Deger Araliklarindaki Verileri Goruntuleme"
            "\n(4) Verilerin Siralanmasi");
     printf("\nLutfen yapmak istediginiz islemi secin:");
-    scanf("%d", &secim);
     while(scanf("%d", &secim) !=1 || !(0<secim && secim<5)){
         printf("Lutfen gecerli bir secenek giriniz: ");
-        scanf("%d", &secim);
 
         while(getchar()!='\n'); //Hatalı girişi temizle
 
