@@ -31,6 +31,16 @@ int main(){
     veri_girisi(gunSayisi);
 
 }
+void menu(){
+    printf("-------------------------------------------------------------");
+    printf("\n-----------------------MENU----------------------------------");
+    printf("\n(1) Veri Girisi"
+           "\n(2) Girilen Verileri Goruntuleme"
+           "\n(3) Belirli Deger Araliklarindaki Verileri Goruntuleme"
+           "\n(4) Verilerin Siralanmasi");
+    printf("\nLutfen yapmak istediginiz islemi secin:");
+}
+
 void veri_girisi(int gunSayisi) {
     struct HavaVerisi veri[gunSayisi];
     for (int i = 0; i < gunSayisi; i++) {
